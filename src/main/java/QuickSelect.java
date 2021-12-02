@@ -9,18 +9,17 @@ public class QuickSelect {
     }
 
     private static int quickSelectIndex(int[] nums, int startIndex, int endIndex, int indexSearchedFor) {
-        if (startIndex < endIndex) {
-            int partition = partition(nums, startIndex, endIndex);
-            if (partition == indexSearchedFor) return partition;
-            else if (partition < indexSearchedFor) {
-                return quickSelectIndex(nums, partition + 1, endIndex, indexSearchedFor);
-            }
-            else {
-                return quickSelectIndex(nums, startIndex, partition - 1, indexSearchedFor);
-            }
-        }
         if (startIndex == endIndex) return startIndex;
-        return -1;
+
+        int partition = partition(nums, startIndex, endIndex);
+        if (partition == indexSearchedFor) return partition;
+
+        else if (partition < indexSearchedFor) {
+            return quickSelectIndex(nums, partition + 1, endIndex, indexSearchedFor);
+        }
+        else {
+            return quickSelectIndex(nums, startIndex, partition - 1, indexSearchedFor);
+        }
     }
 
     private static int partition(int[] nums, int startIndex, int endIndex) {
